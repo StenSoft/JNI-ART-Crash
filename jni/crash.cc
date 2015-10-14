@@ -11,12 +11,12 @@ void Java_cz_acrobits_bugreport_art_CrashActivity_crash(JNIEnv* env, jobject sel
 
     // Get the annotation instance
     jclass annotatedCls = env->FindClass("cz/acrobits/bugreport/art/CrashActivity$Annotated");
-    jvalue p1[1];
+    jvalue p1[1]; // 1 parameter
     p1[0].l = annotationCls;
     jobject annotation = env->CallObjectMethodA(annotatedCls, getAnnotation, p1);
 
     // Call the annotation instance
     jmethodID value = env->GetMethodID(annotationCls, "value", "()I");
-    jvalue p0[0];
+    jvalue p0[0]; // 0 parameters
     env->CallIntMethodA(annotation, value, p0); // BOOM!
 }
